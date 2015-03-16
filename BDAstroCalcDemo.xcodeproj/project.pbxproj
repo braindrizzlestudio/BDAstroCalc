@@ -7,46 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CB1B8041AB09F26004903FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8031AB09F26004903FC /* AppDelegate.swift */; };
-		3CB1B8061AB09F26004903FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8051AB09F26004903FC /* ViewController.swift */; };
-		3CB1B8091AB09F26004903FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB1B8071AB09F26004903FC /* Main.storyboard */; };
 		3CB1B80B1AB09F26004903FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CB1B80A1AB09F26004903FC /* Images.xcassets */; };
 		3CB1B80E1AB09F26004903FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CB1B80C1AB09F26004903FC /* LaunchScreen.xib */; };
-		3CB1B81A1AB09F26004903FC /* BDAstroCalcDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8191AB09F26004903FC /* BDAstroCalcDemoTests.swift */; };
+		3CB1B8281AB09FA8004903FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8231AB09FA8004903FC /* AppDelegate.swift */; };
+		3CB1B8291AB09FA8004903FC /* BDAstroCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8241AB09FA8004903FC /* BDAstroCalc.swift */; };
+		3CB1B82A1AB09FA8004903FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8251AB09FA8004903FC /* MainViewController.swift */; };
+		3CB1B82B1AB09FA8004903FC /* MoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8261AB09FA8004903FC /* MoonViewController.swift */; };
+		3CB1B82C1AB09FA8004903FC /* SunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1B8271AB09FA8004903FC /* SunViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3CB1B8141AB09F26004903FC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3CB1B7F61AB09F26004903FC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3CB1B7FD1AB09F26004903FC;
-			remoteInfo = BDAstroCalcDemo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3CB1B7FE1AB09F26004903FC /* BDAstroCalcDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDAstroCalcDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB1B8021AB09F26004903FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CB1B8031AB09F26004903FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3CB1B8051AB09F26004903FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3CB1B8081AB09F26004903FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3CB1B80A1AB09F26004903FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3CB1B80D1AB09F26004903FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		3CB1B8131AB09F26004903FC /* BDAstroCalcDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BDAstroCalcDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CB1B8181AB09F26004903FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CB1B8191AB09F26004903FC /* BDAstroCalcDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDAstroCalcDemoTests.swift; sourceTree = "<group>"; };
+		3CB1B8231AB09FA8004903FC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3CB1B8241AB09FA8004903FC /* BDAstroCalc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BDAstroCalc.swift; sourceTree = "<group>"; };
+		3CB1B8251AB09FA8004903FC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3CB1B8261AB09FA8004903FC /* MoonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoonViewController.swift; sourceTree = "<group>"; };
+		3CB1B8271AB09FA8004903FC /* SunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3CB1B7FB1AB09F26004903FC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3CB1B8101AB09F26004903FC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				3CB1B8001AB09F26004903FC /* BDAstroCalcDemo */,
-				3CB1B8161AB09F26004903FC /* BDAstroCalcDemoTests */,
 				3CB1B7FF1AB09F26004903FC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				3CB1B7FE1AB09F26004903FC /* BDAstroCalcDemo.app */,
-				3CB1B8131AB09F26004903FC /* BDAstroCalcDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,9 +58,11 @@
 		3CB1B8001AB09F26004903FC /* BDAstroCalcDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3CB1B8031AB09F26004903FC /* AppDelegate.swift */,
-				3CB1B8051AB09F26004903FC /* ViewController.swift */,
-				3CB1B8071AB09F26004903FC /* Main.storyboard */,
+				3CB1B8231AB09FA8004903FC /* AppDelegate.swift */,
+				3CB1B8241AB09FA8004903FC /* BDAstroCalc.swift */,
+				3CB1B8251AB09FA8004903FC /* MainViewController.swift */,
+				3CB1B8261AB09FA8004903FC /* MoonViewController.swift */,
+				3CB1B8271AB09FA8004903FC /* SunViewController.swift */,
 				3CB1B80A1AB09F26004903FC /* Images.xcassets */,
 				3CB1B80C1AB09F26004903FC /* LaunchScreen.xib */,
 				3CB1B8011AB09F26004903FC /* Supporting Files */,
@@ -91,23 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				3CB1B8021AB09F26004903FC /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3CB1B8161AB09F26004903FC /* BDAstroCalcDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				3CB1B8191AB09F26004903FC /* BDAstroCalcDemoTests.swift */,
-				3CB1B8171AB09F26004903FC /* Supporting Files */,
-			);
-			path = BDAstroCalcDemoTests;
-			sourceTree = "<group>";
-		};
-		3CB1B8171AB09F26004903FC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				3CB1B8181AB09F26004903FC /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -132,24 +98,6 @@
 			productReference = 3CB1B7FE1AB09F26004903FC /* BDAstroCalcDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3CB1B8121AB09F26004903FC /* BDAstroCalcDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3CB1B8201AB09F26004903FC /* Build configuration list for PBXNativeTarget "BDAstroCalcDemoTests" */;
-			buildPhases = (
-				3CB1B80F1AB09F26004903FC /* Sources */,
-				3CB1B8101AB09F26004903FC /* Frameworks */,
-				3CB1B8111AB09F26004903FC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3CB1B8151AB09F26004903FC /* PBXTargetDependency */,
-			);
-			name = BDAstroCalcDemoTests;
-			productName = BDAstroCalcDemoTests;
-			productReference = 3CB1B8131AB09F26004903FC /* BDAstroCalcDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -161,10 +109,6 @@
 				TargetAttributes = {
 					3CB1B7FD1AB09F26004903FC = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					3CB1B8121AB09F26004903FC = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 3CB1B7FD1AB09F26004903FC;
 					};
 				};
 			};
@@ -182,7 +126,6 @@
 			projectRoot = "";
 			targets = (
 				3CB1B7FD1AB09F26004903FC /* BDAstroCalcDemo */,
-				3CB1B8121AB09F26004903FC /* BDAstroCalcDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -192,16 +135,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CB1B8091AB09F26004903FC /* Main.storyboard in Resources */,
 				3CB1B80E1AB09F26004903FC /* LaunchScreen.xib in Resources */,
 				3CB1B80B1AB09F26004903FC /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3CB1B8111AB09F26004903FC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,38 +147,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CB1B8061AB09F26004903FC /* ViewController.swift in Sources */,
-				3CB1B8041AB09F26004903FC /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3CB1B80F1AB09F26004903FC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3CB1B81A1AB09F26004903FC /* BDAstroCalcDemoTests.swift in Sources */,
+				3CB1B82A1AB09FA8004903FC /* MainViewController.swift in Sources */,
+				3CB1B8291AB09FA8004903FC /* BDAstroCalc.swift in Sources */,
+				3CB1B8281AB09FA8004903FC /* AppDelegate.swift in Sources */,
+				3CB1B82C1AB09FA8004903FC /* SunViewController.swift in Sources */,
+				3CB1B82B1AB09FA8004903FC /* MoonViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		3CB1B8151AB09F26004903FC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3CB1B7FD1AB09F26004903FC /* BDAstroCalcDemo */;
-			targetProxy = 3CB1B8141AB09F26004903FC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		3CB1B8071AB09F26004903FC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3CB1B8081AB09F26004903FC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3CB1B80C1AB09F26004903FC /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -336,9 +250,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BDAstroCalcDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -346,43 +262,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = BDAstroCalcDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		3CB1B8211AB09F26004903FC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BDAstroCalcDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDAstroCalcDemo.app/BDAstroCalcDemo";
-			};
-			name = Debug;
-		};
-		3CB1B8221AB09F26004903FC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BDAstroCalcDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BDAstroCalcDemo.app/BDAstroCalcDemo";
 			};
 			name = Release;
 		};
@@ -405,14 +288,7 @@
 				3CB1B81F1AB09F26004903FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		3CB1B8201AB09F26004903FC /* Build configuration list for PBXNativeTarget "BDAstroCalcDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3CB1B8211AB09F26004903FC /* Debug */,
-				3CB1B8221AB09F26004903FC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
