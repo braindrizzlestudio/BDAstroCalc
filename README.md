@@ -79,7 +79,11 @@ println(moonRiseAndSetTimes.rise) // Prints the NSDate of the moon rise
 
 ## The Demo
 
-The BDAstroCalcDemo project exists to demonstrate the results of BDAstroCalc. Note: the iOS simulator for Xcode 6.1/6.2 (which I used for testing) seems to not get the right time zone from NSTimeZone.systemTimeZone; it's always PDT/PST. The labels might display results offset by the nubmer of hours from PDT/PST if your Scheme is set to anything other than San Francisco. On actual hardware it works correctly.
+The BDAstroCalcDemo project exists to demonstrate the results of BDAstroCalc. 
+
+Note: the iOS Simulator for Xcode uses your computer's time zone when NSTimeZone.systemTimeZone is called; changing your location in the Simulator's Scheme has no effect. If you want to check results for different locations you'll need to change both the Scheme location and your system time zone. Let's hope Apple fixes this soon! On real hardware this isn't a problem.
+
+Note on the Note: this doesn't affect BDAstroCalc computations. This is only a possible issue when you're presenting results, as time zone offsets become apparent.
 
 
 ## Issues and Feedback
