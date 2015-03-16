@@ -4,13 +4,15 @@
 
 ### By: [Braindrizzle Studio:tm:](http://braindrizzlestudio.com)
 
-### Based on the work of:
+#### Based on the work of:
 
 (JavaScript) https://github.com/mourner/suncalc/blob/master/suncalc.js
+
 (IDL) http://idlastro.gsfc.nasa.gov/ftp/pro/astro/mphase.pro
+
 (Math) http://aa.quae.nl/en/index.html
 
-### Image Credit
+#### Demo App Image Credit:
 
 NASA: http://www.nasa.gov/connect/artspace/participate/royalty_free_resources.html
 
