@@ -95,3 +95,9 @@ Please feel free to report issues, or offer suggestions, here on GitHub.
 Alternatively, email support@braindrizzlestudio.com 
 
 or visit us at http://www.braindrizzlestudio.com
+
+
+## Changelog
+
+###1.0.1
+- Updated Demo/BDAstroCalc for Xcode 6.3 and Swift 1.2
