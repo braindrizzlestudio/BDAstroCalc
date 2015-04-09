@@ -86,7 +86,7 @@ class MainViewController : UIViewController, CLLocationManagerDelegate {
     
     func setupMoonVCSegueButton () {
     
-        let moonVCSegueButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let moonVCSegueButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         moonVCSegueButton.setTitle("Moon Information", forState: UIControlState.Normal)
 
         let origin = CGPoint(x: self.view.bounds.size.width / 4, y: self.view.bounds.size.height * 2 / 5)
@@ -105,7 +105,7 @@ class MainViewController : UIViewController, CLLocationManagerDelegate {
     
     func setupSunVCSegueButton () {
         
-        let sunVCSegueButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        let sunVCSegueButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         sunVCSegueButton.setTitle("Sun Information", forState: UIControlState.Normal)
         
         let origin = CGPoint(x: self.view.bounds.size.width / 4, y: self.view.bounds.size.height * 3 / 5)

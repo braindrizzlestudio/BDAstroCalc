@@ -307,7 +307,7 @@ struct BDAstroCalc {
     */
     static func moonRiseAndSet (#date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate) {
         
-        let calendar = NSCalendar(identifier: NSGregorianCalendar)!
+        let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)!
         let dateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
         dateComponents.hour = 0
         dateComponents.minute = 0
@@ -371,13 +371,13 @@ struct BDAstroCalc {
             
             if ye > 0 {
                 
-                result.rise = NSDate.distantFuture() as NSDate
-                result.set = NSDate.distantFuture() as NSDate
+                result.rise = NSDate.distantFuture() as! NSDate
+                result.set = NSDate.distantFuture() as! NSDate
                 
             } else {
                 
-                result.rise = NSDate.distantPast() as NSDate
-                result.set = NSDate.distantPast() as NSDate
+                result.rise = NSDate.distantPast() as! NSDate
+                result.set = NSDate.distantPast() as! NSDate
             }
         }
         
