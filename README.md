@@ -57,7 +57,7 @@ The SunCalc code, which served as the basis for BDAstroCalc, was JavaScript; its
 
 ## Installation
 
-Simply copy the BDAstroCalcDemo\BDAstroCalc.swift file into your project.
+Simply copy the BDAstroCalcDemo\BDAstroCalc.swift file into your project. Note: v1.0.1 requires Xcode 6.3 and Swift 1.2.
 
 
 ## Use
