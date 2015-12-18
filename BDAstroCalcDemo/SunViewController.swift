@@ -7,7 +7,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Ian McKay
+Copyright (c) 2015 Braindrizzle Studio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -159,7 +159,6 @@ class SunViewController : UIViewController {
     /// Updates the text of all of the labels.
     func updateLabels() {
         
-        let newDate = datePicker.date
         let Jan12000Date = BDAstroCalc.daysSinceJan12000(date: datePicker.date)
         
         

@@ -2,11 +2,12 @@
 //  MainViewController.swift
 //  BDAstroCalcDemo
 //
+//
 /**
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Ian McKay
+Copyright (c) 2015 Braindrizzle Studio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -86,7 +87,7 @@ class MainViewController : UIViewController, CLLocationManagerDelegate {
     
     func setupMoonVCSegueButton () {
     
-        let moonVCSegueButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let moonVCSegueButton = UIButton(type: UIButtonType.System)
         moonVCSegueButton.setTitle("Moon Information", forState: UIControlState.Normal)
 
         let origin = CGPoint(x: self.view.bounds.size.width / 4, y: self.view.bounds.size.height * 2 / 5)
@@ -105,7 +106,7 @@ class MainViewController : UIViewController, CLLocationManagerDelegate {
     
     func setupSunVCSegueButton () {
         
-        let sunVCSegueButton = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let sunVCSegueButton = UIButton(type: UIButtonType.System)
         sunVCSegueButton.setTitle("Sun Information", forState: UIControlState.Normal)
         
         let origin = CGPoint(x: self.view.bounds.size.width / 4, y: self.view.bounds.size.height * 3 / 5)
@@ -205,7 +206,7 @@ class MainViewController : UIViewController, CLLocationManagerDelegate {
     
     
     // Updates the global currentLocation, and global currentTimeZone, when location is updated
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         currentLocation = locations[0].coordinate as CLLocationCoordinate2D
         
@@ -216,8 +217,8 @@ class MainViewController : UIViewController, CLLocationManagerDelegate {
         self.setupCurrentLocationLabel()
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
-        println("Location Manager failed to get location: \(error)")
+        print("Location Manager failed to get location: \(error)")
     }
 }

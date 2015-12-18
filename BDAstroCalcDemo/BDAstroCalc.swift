@@ -1,8 +1,33 @@
 //
 //  BDAstroCalc.swift
 //
-//  v1.0.1
+//  v1.0.2
 //
+/**
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Braindrizzle Studio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
 
 import CoreLocation
 
@@ -36,12 +61,12 @@ struct BDAstroCalc {
     
     The number of days since the Gregorian year 2000 began.
     
-    :param: date A date in Unix Time.
+    - parameter date: A date in Unix Time.
     
-    :returns: The number of days since the year 2000.
+    - returns: The number of days since the year 2000.
     
     */
-    static func daysSinceJan12000 (#date: NSDate) -> Double {
+    static func daysSinceJan12000 (date date: NSDate) -> Double {
         
         return toJulian(date: date) - J2000
     }
@@ -51,14 +76,14 @@ struct BDAstroCalc {
     
     Gives a date a certain number of hours after a given date/time.
     
-    :param: date A date.
+    - parameter date: A date.
     
-    :param: hours The number of hours after the given date/time that will be returned.
+    - parameter hours: The number of hours after the given date/time that will be returned.
     
-    :returns: An NSDate that is the given number of hours after the given date.
+    - returns: An NSDate that is the given number of hours after the given date.
     
     */
-    static func hoursLater (#date: NSDate, hours: Double) -> NSDate {
+    static func hoursLater (date date: NSDate, hours: Double) -> NSDate {
         
         let hourSeconds = 60.0 * 60.0
         
@@ -70,12 +95,12 @@ struct BDAstroCalc {
     
     The number of days since the beginning of the Julian Period.
     
-    :param: date A Gregorian date.
+    - parameter date: A Gregorian date.
     
-    :returns: The number of days since the beginning of the Julian Period.
+    - returns: The number of days since the beginning of the Julian Period.
     
     */
-    static func toJulian (#date: NSDate) -> Double {
+    static func toJulian (date date: NSDate) -> Double {
         
         let daySeconds : Double = 60 * 60 * 24
         let J1970 = 2440588.0
@@ -89,12 +114,12 @@ struct BDAstroCalc {
     
     The Gregorian date of a given number of Julian Days.
     
-    :param: julianDays A number of days since the beginning of the Julian Period.
+    - parameter julianDays: A number of days since the beginning of the Julian Period.
     
-    :returns: A Gregorian calendar date from a number of Julian Days.
+    - returns: A Gregorian calendar date from a number of Julian Days.
     
     */
-    static func fromJulian (#julianDays: Double) -> NSDate {
+    static func fromJulian (julianDays julianDays: Double) -> NSDate {
     
         let daySeconds : Double = 60 * 60 * 24
         let J1970 = 2440588.0
@@ -111,16 +136,16 @@ struct BDAstroCalc {
     
     Calculates the altitude of a celestial body.
     
-    :param: hourAngle An angle in radians. The hour angle indicates how far the celestial body has passed beyond the celestial meridian.
+    - parameter hourAngle: An angle in radians. The hour angle indicates how far the celestial body has passed beyond the celestial meridian.
     
-    :param: latiude The latitude of observation in radians.
+    - parameter latiude: The latitude of observation in radians.
     
-    :param: declination The declination in radians.
+    - parameter declination: The declination in radians.
     
-    :returns: The altitude above the horizon in radians.
+    - returns: The altitude above the horizon in radians.
     
     */
-    static func altitude (#hourAngle: Double, latitude: Double, declination: Double) -> Double {
+    static func altitude (hourAngle hourAngle: Double, latitude: Double, declination: Double) -> Double {
         
         return asin(sin(latitude) * sin(declination) + cos(latitude) * cos(declination) * cos(hourAngle))
         
@@ -131,16 +156,16 @@ struct BDAstroCalc {
     
     Calculates the azimuth of a celestial body in radians, measured from South to West.
     
-    :param: hourAngle An angle in radians, measured. The hour angle indicates how far the celestial body has passed beyond the celestial meridian.
+    - parameter hourAngle: An angle in radians, measured. The hour angle indicates how far the celestial body has passed beyond the celestial meridian.
     
-    :param: latiude The latitude of observation in radians.
+    - parameter latiude: The latitude of observation in radians.
     
-    :param: declination The declination in radians.
+    - parameter declination: The declination in radians.
     
-    :returns: The azimuth of the body in radians, measured from South to West. (Note that it it standard to measure from North to East; simply add/subtract M_PI to the result if you need to conform.)
+    - returns: The azimuth of the body in radians, measured from South to West. (Note that it it standard to measure from North to East; simply add/subtract M_PI to the result if you need to conform.)
     
     */
-    static func azimuth (#hourAngle: Double, latitude: Double, declination: Double) -> Double {
+    static func azimuth (hourAngle hourAngle: Double, latitude: Double, declination: Double) -> Double {
         
         return atan2(sin(hourAngle), cos(hourAngle) * sin(latitude) - tan(declination) * cos(latitude))
     }
@@ -151,14 +176,14 @@ struct BDAstroCalc {
     
     Calculates declination given latitude and longitude.
     
-    :param: latitude The latitude in radians.
+    - parameter latitude: The latitude in radians.
     
-    :param: longitude The longitude in radians.
+    - parameter longitude: The longitude in radians.
     
-    :returns: The declination in radians.
+    - returns: The declination in radians.
     
     */
-    static func declination (#latitude: Double, longitude: Double) -> Double {
+    static func declination (latitude latitude: Double, longitude: Double) -> Double {
         
         return asin(sin(latitude) * cos(obliquityOfEarth) + cos(latitude) * sin(obliquityOfEarth) * sin(longitude))
     }
@@ -169,14 +194,14 @@ struct BDAstroCalc {
     
     Calculates right ascension given latitude and longitude.
     
-    :param: latitude The latitude in radians.
+    - parameter latitude: The latitude in radians.
     
-    :param: longitude The longitude in radians.
+    - parameter longitude: The longitude in radians.
     
-    :returns: The right asnension in radians.
+    - returns: The right asnension in radians.
     
     */
-    static func rightAscension (#latitude: Double, longitude: Double) -> Double {
+    static func rightAscension (latitude latitude: Double, longitude: Double) -> Double {
                 
         return atan2(sin(longitude) * cos(obliquityOfEarth) - tan(latitude) * sin(obliquityOfEarth), cos(longitude))
     }
@@ -186,14 +211,14 @@ struct BDAstroCalc {
     
     The sidereal time.
     
-    :param: daysSinceJan12000 The number of days since January 1, 2000.
+    - parameter daysSinceJan12000: The number of days since January 1, 2000.
     
-    :param: longitude The longitude west of the prime meridian in radians.
+    - parameter longitude: The longitude west of the prime meridian in radians.
     
-    :returns: The sidereal time in radians.
+    - returns: The sidereal time in radians.
     
     */
-    static func siderealTime (#daysSinceJan12000: Double, longitude: Double) -> Double {
+    static func siderealTime (daysSinceJan12000 daysSinceJan12000: Double, longitude: Double) -> Double {
         
         return rad * (280.16 + 360.9856235 * daysSinceJan12000) - longitude
     }
@@ -207,12 +232,12 @@ struct BDAstroCalc {
     
     The geocentric ecliptic coordinates of the moon.
     
-    :param: daysSinceJan12000 The number of days since Jan 1, 2000.
+    - parameter daysSinceJan12000: The number of days since Jan 1, 2000.
     
-    :returns: The right ascension and declination in radians, and distance in kilometers, of the moon for the given date.
+    - returns: The right ascension and declination in radians, and distance in kilometers, of the moon for the given date.
     
     */
-    static func moonCoordinates (#daysSinceJan12000: Double) -> (declination: Double, distance: Double, rightAscension: Double) {
+    static func moonCoordinates (daysSinceJan12000 daysSinceJan12000: Double) -> (declination: Double, distance: Double, rightAscension: Double) {
         
         let eclipticLongitude = rad * (218.316 + 13.176396 * daysSinceJan12000)
         let meanAnomaly = rad * (134.963 + 13.064993 * daysSinceJan12000)
@@ -230,14 +255,14 @@ struct BDAstroCalc {
     
     The moons position on a given date from a given location.
     
-    :param: date A date.
+    - parameter date: A date.
     
     :location: A location. Requires CLLocationCoordinate2D to reduce confusion, as these are in degrees while other methods require radians.
     
-    :returns: The moon's altitude and azimuth in radians, and distance in kilometers.
+    - returns: The moon's altitude and azimuth in radians, and distance in kilometers.
     
     */
-    static func moonPosition(#date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double, distance: Double) {
+    static func moonPosition(date date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double, distance: Double) {
         
         let longitude = rad * -location.longitude
         let phi = rad * location.latitude
@@ -263,12 +288,12 @@ struct BDAstroCalc {
     
     The fraction of the moon's visible surface that is illuminated, its phase, and the midpoint angle, going east, of the illuminated limb.
     
-    :param: A date.
+    - parameter A: date.
     
-    :returns: The fraction of the moon illuminated is a number from 0 to 1, where 0 is a new moon and 1 is a full moon. The phase is a number from 0 to 1, where 0 and 1 are a new moon, 0.5 is a full moon, 0 - 0.5 is waxing, and 0.5 - 1.0 is waning. The angle is the midpoint of the illuminated limb of the moon going east, in radians.
+    - returns: The fraction of the moon illuminated is a number from 0 to 1, where 0 is a new moon and 1 is a full moon. The phase is a number from 0 to 1, where 0 and 1 are a new moon, 0.5 is a full moon, 0 - 0.5 is waxing, and 0.5 - 1.0 is waning. The angle is the midpoint of the illuminated limb of the moon going east, in radians.
     
     */
-    static func moonPhase (#date: NSDate) -> (fractionOfMoonIlluminated: Double, phase: Double, angle: Double) {
+    static func moonPhase (date date: NSDate) -> (fractionOfMoonIlluminated: Double, phase: Double, angle: Double) {
         
         let days = daysSinceJan12000(date: date)
         let sunCoords = sunCoordinates(daysSinceJan12000: days)
@@ -298,17 +323,17 @@ struct BDAstroCalc {
     
     The moon's rise and set times for a given date and location.
     
-    :param: date A date.
+    - parameter date: A date.
     
-    :param: location A location. Requires CLLocationCoordinate2D to reduce confusion, as these are in degrees while other methods require radians.
+    - parameter location: A location. Requires CLLocationCoordinate2D to reduce confusion, as these are in degrees while other methods require radians.
     
-    :returns: The rise and set NSDates of the moon, if there are any. If the moon is always up for the given date: returns NSDate.distantFuture() for both rise and set. If the moon is always down for the given date: returns NSDate.distantPast() for both rise and set.
+    - returns: The rise and set NSDates of the moon, if there are any. If the moon is always up for the given date: returns NSDate.distantFuture() for both rise and set. If the moon is always down for the given date: returns NSDate.distantPast() for both rise and set.
     
     */
-    static func moonRiseAndSet (#date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate) {
+    static func moonRiseAndSet (date date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate) {
         
         let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)!
-        let dateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay, fromDate: date)
+        let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
         dateComponents.hour = 0
         dateComponents.minute = 0
         dateComponents.second = 0
@@ -371,13 +396,13 @@ struct BDAstroCalc {
             
             if ye > 0 {
                 
-                result.rise = NSDate.distantFuture() as! NSDate
-                result.set = NSDate.distantFuture() as! NSDate
+                result.rise = NSDate.distantFuture() 
+                result.set = NSDate.distantFuture() 
                 
             } else {
                 
-                result.rise = NSDate.distantPast() as! NSDate
-                result.set = NSDate.distantPast() as! NSDate
+                result.rise = NSDate.distantPast() 
+                result.set = NSDate.distantPast() 
             }
         }
         
@@ -393,16 +418,16 @@ struct BDAstroCalc {
     
     The approximate solar transit, the time at which it passes through the celestial meridian.
     
-    :param: julianCycleNumber The Julian cycle number.
+    - parameter julianCycleNumber: The Julian cycle number.
     
-    :param: longitude The longitude in radians.
+    - parameter longitude: The longitude in radians.
     
-    :param: targetHourAngle The target hour angle.
+    - parameter targetHourAngle: The target hour angle.
     
-    :returns: The approximate solar transit.
+    - returns: The approximate solar transit.
     
     */
-    static func approximateTransit (#julianCycleNumber: Double, longitude: Double, targetHourAngle: Double) -> Double {
+    static func approximateTransit (julianCycleNumber julianCycleNumber: Double, longitude: Double, targetHourAngle: Double) -> Double {
         
         return J0 + julianCycleNumber + (targetHourAngle + longitude) / (2 * M_PI)
     }
@@ -412,12 +437,12 @@ struct BDAstroCalc {
     
     The ecliptic longitude: the position along the ecliptic relative to the vernal equinox.
     
-    :param: meanAnomaly The mean anomaly: the positon a planet/satellite would have relative to its perihelion if the orbit of the planet were a circle.
+    - parameter meanAnomaly: The mean anomaly: the positon a planet/satellite would have relative to its perihelion if the orbit of the planet were a circle.
     
-    :returns: The ecliptic longitude in radians.
+    - returns: The ecliptic longitude in radians.
     
     */
-    static func eclipticLongitude (#meanAnomaly: Double) -> Double {
+    static func eclipticLongitude (meanAnomaly meanAnomaly: Double) -> Double {
         
         // Equation of Center
         let center = rad * (1.9148 * sin(meanAnomaly) + 0.02 * sin(2 * meanAnomaly) + 0.0003 * sin(3 * meanAnomaly))
@@ -433,16 +458,16 @@ struct BDAstroCalc {
     
     The hour angle: the difference in right ascension between a body and the meridian of right ascension that is due south at that time.
     
-    :param: altitude The altitude of the body.
+    - parameter altitude: The altitude of the body.
     
     :latitude: The latitude.
     
     :declination: The declination.
     
-    :returns: The hour angle in radians.
+    - returns: The hour angle in radians.
     
     */
-    static func hourAngle (#altitude: Double, latitude: Double, declination: Double) -> Double {
+    static func hourAngle (altitude altitude: Double, latitude: Double, declination: Double) -> Double {
         
         return acos((sin(altitude) - sin(latitude) * sin(declination)) / (cos(latitude) * cos(declination)))
     }
@@ -452,14 +477,14 @@ struct BDAstroCalc {
     
     The Julian cycle number. (See http://aa.quae.nl/en/reken/zonpositie.html )
     
-    :param: daysSinceJan12000 The number of days since January 1, 2000.
+    - parameter daysSinceJan12000: The number of days since January 1, 2000.
     
-    :param: longitude The longitude in radians.
+    - parameter longitude: The longitude in radians.
     
-    :returns: The Julian cycle number.
+    - returns: The Julian cycle number.
     
     */
-    static func julianCycle (#daysSinceJan12000: Double, longitude: Double) -> Double {
+    static func julianCycle (daysSinceJan12000 daysSinceJan12000: Double, longitude: Double) -> Double {
         
         return round(daysSinceJan12000 - J0 - longitude / (2 * M_PI))
     }
@@ -469,24 +494,24 @@ struct BDAstroCalc {
     
     The Julian time of the sunset.
     
-    :param: altitude The altitude of the sun in radians.
+    - parameter altitude: The altitude of the sun in radians.
     
-    :param: declination The declination of the sun in radians.
+    - parameter declination: The declination of the sun in radians.
     
-    :param: latitude The latitude in radians.
+    - parameter latitude: The latitude in radians.
     
-    :param: longitude The longitude in radians.
+    - parameter longitude: The longitude in radians.
     
-    :param: julianCycleNumber The Julian cycle number.
+    - parameter julianCycleNumber: The Julian cycle number.
     
-    :param: meanAnomaly The mean anomaly.
+    - parameter meanAnomaly: The mean anomaly.
     
-    :param: meanLongitude The mean longitude.
+    - parameter meanLongitude: The mean longitude.
     
-    :returns: The Julian time of the sunset.
+    - returns: The Julian time of the sunset.
     
     */
-    static func julianSet (#altitude: Double, declination: Double, latitude: Double, longitude: Double, julianCycleNumber: Double, meanAnomaly: Double, meanLongitude: Double) -> Double {
+    static func julianSet (altitude altitude: Double, declination: Double, latitude: Double, longitude: Double, julianCycleNumber: Double, meanAnomaly: Double, meanLongitude: Double) -> Double {
         
         let hrAngle = hourAngle(altitude: altitude, latitude: latitude, declination: declination)
         let approxTransit = approximateTransit(julianCycleNumber: julianCycleNumber, longitude: longitude, targetHourAngle: hrAngle)
@@ -499,16 +524,16 @@ struct BDAstroCalc {
     
     The Julian date of the solar transit.
     
-    :param: approximateTransit The approximate solar transit.
+    - parameter approximateTransit: The approximate solar transit.
     
-    :param: meanLongitude The mean longitude in radians.
+    - parameter meanLongitude: The mean longitude in radians.
     
-    :param: meanAnomaly The mean anomaly in radians.
+    - parameter meanAnomaly: The mean anomaly in radians.
     
-    :returns: The Julian date of the solar transit.
+    - returns: The Julian date of the solar transit.
     
     */
-    static func julianSolarTransit (#approximateTransit: Double, longitude: Double, meanAnomaly: Double) -> Double {
+    static func julianSolarTransit (approximateTransit approximateTransit: Double, longitude: Double, meanAnomaly: Double) -> Double {
     
         return J2000 + approximateTransit + 0.0053 * sin(meanAnomaly) - 0.0069 * sin(2 * longitude)
     }
@@ -518,12 +543,12 @@ struct BDAstroCalc {
     
     The solar mean anomaly.
     
-    :param: daysSinceJan12000 The number of days since January 1, 2000.
+    - parameter daysSinceJan12000: The number of days since January 1, 2000.
     
-    :returns: The solar mean anomaly in radians.
+    - returns: The solar mean anomaly in radians.
     
     */
-    static func solarMeanAnomaly (#daysSinceJan12000: Double) -> Double {
+    static func solarMeanAnomaly (daysSinceJan12000 daysSinceJan12000: Double) -> Double {
         
         return rad * (357.5291 + 0.98560028 * daysSinceJan12000)
     }
@@ -533,12 +558,12 @@ struct BDAstroCalc {
     
     The sun's right ascension and declination on a given day.
     
-    :param: daysSinceJan12000 The number of days since January 1, 2000.
+    - parameter daysSinceJan12000: The number of days since January 1, 2000.
     
-    :returns: The sun's right ascension and declination in radians.
+    - returns: The sun's right ascension and declination in radians.
     
     */
-    static func sunCoordinates (#daysSinceJan12000: Double) -> (declination: Double, rightAscension: Double) {
+    static func sunCoordinates (daysSinceJan12000 daysSinceJan12000: Double) -> (declination: Double, rightAscension: Double) {
         
         let solarMA = solarMeanAnomaly(daysSinceJan12000: daysSinceJan12000)
         let eLongitude = eclipticLongitude(meanAnomaly: solarMA)
@@ -552,14 +577,14 @@ struct BDAstroCalc {
     
     The sun's position on a given date from a given location.
     
-    :param: date A date.
+    - parameter date: A date.
     
-    :param: A location. Requires CLLocationCoordinate2D to reduce confusion, as these are in degrees while other methods require radians.
+    - parameter A: location. Requires CLLocationCoordinate2D to reduce confusion, as these are in degrees while other methods require radians.
     
-    :returns: The sun's azimuth and altitude in radians. (Note:
+    - returns: The sun's azimuth and altitude in radians. (Note:
     
     */
-    static func sunPosition (#date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double) {
+    static func sunPosition (date date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double) {
         
         let longitude = rad * -location.longitude
         let latitude = rad * location.latitude
@@ -577,14 +602,14 @@ struct BDAstroCalc {
     
     The sun's times of rise and set for a given date and location.
     
-    :param: date A date.
+    - parameter date: A date.
     
-    :param: location A location.
+    - parameter location: A location.
     
-    :returns: The sun's rise, set, solar noon, and nadir for the given date and location.
+    - returns: The sun's rise, set, solar noon, and nadir for the given date and location.
     
     */
-    static func sunRiseAndSet (#date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate, solarNoon: NSDate, nadir: NSDate) {
+    static func sunRiseAndSet (date date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate, solarNoon: NSDate, nadir: NSDate) {
         
         // Standard altitude of the end of sunrise and start of sunset
         let sunRiseEndSetStartAltitude = -0.3
@@ -606,7 +631,7 @@ struct BDAstroCalc {
         let nadir = fromJulian(julianDays: julianNoon - 0.5)
         var result = (rise: date, set: date, solarNoon: solarNoon, nadir: nadir)
         
-        var i:Int, length:Int, time:Double, julinSet:Double, julianRise:Double
+        var julinSet:Double, julianRise:Double
 
         julinSet = julianSet(altitude: rad * sunRiseEndSetStartAltitude,
             declination: declinatn,
@@ -629,14 +654,14 @@ struct BDAstroCalc {
     
     Various significant times related to the sun's altitude. Additions can be hardcoded into the method.
     
-    :param: date A date.
+    - parameter date: A date.
     
-    :param: location A location.
+    - parameter location: A location.
     
-    :returns: The method returns a dictionary of significant times during the day. Currently returns: sunriseStart, sunriseEnd, sunsetStart, sunsetEnd, dawn, dusk, nauticalDawn, nauticalDusk, nightStart, nightEnd, goldenHourStart, goldenHourEnd. The time are accessed via a String and given as an NSDate.
+    - returns: The method returns a dictionary of significant times during the day. Currently returns: sunriseStart, sunriseEnd, sunsetStart, sunsetEnd, dawn, dusk, nauticalDawn, nauticalDusk, nightStart, nightEnd, goldenHourStart, goldenHourEnd. The time are accessed via a String and given as an NSDate.
     
     */
-    static func sunSignificantTimes (#date: NSDate, location: CLLocationCoordinate2D) -> [String: NSDate] {
+    static func sunSignificantTimes (date date: NSDate, location: CLLocationCoordinate2D) -> [String: NSDate] {
 
         // Various standard altitudes of the sun. Feel free to add your own times, in the same format, to this array--they'll be added to the returned dictionary.
         let times = [
@@ -661,8 +686,6 @@ struct BDAstroCalc {
         
         let julianNoon = julianSolarTransit(approximateTransit: approxTransit, longitude: eclipLongitude, meanAnomaly: meanAnomaly)
         
-        let solarNoon = fromJulian(julianDays: julianNoon)
-        let nadir = fromJulian(julianDays: julianNoon - 0.5)
         var result = [String: NSDate]()
         
         var i:Int, julianEnd=0.0, julianStart:Double, length:Int
