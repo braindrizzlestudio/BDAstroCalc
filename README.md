@@ -99,5 +99,8 @@ or visit us at http://www.braindrizzlestudio.com
 
 ## Changelog
 
+####1.0.2
+- Updated syntax for iOS 9
+
 ####1.0.1
 - Updated Demo/BDAstroCalc for Xcode 6.3 and Swift 1.2
