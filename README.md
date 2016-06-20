@@ -1,4 +1,4 @@
-![Braindrizzle Studio](http://braindrizzlestudio.com/images/logo/logo-overlay-orange-180.png "Braindrizzle Studio:tm:")
+![Braindrizzle Studio](http://braindrizzlestudios.com/images/logo/logo-overlay-orange-180.png "Braindrizzle Studio:tm:")
 
 # BDAstroCalc
 
