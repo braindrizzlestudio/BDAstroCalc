@@ -1,5 +1,3 @@
-![Braindrizzle Studio](http://braindrizzlestudio.com/images/logo/logo-overlay-orange-180.png "Braindrizzle Studio:tm:")
-
 # BDAstroCalc
 
 ### By: [Braindrizzle Studio:tm:](http://braindrizzlestudio.com)
@@ -98,6 +96,8 @@ or visit us at http://www.braindrizzlestudio.com
 
 
 ## Changelog
+####1.0.3
+- Updated syntax for Swift 5
 
 ####1.0.2
 - Updated syntax for iOS 9
