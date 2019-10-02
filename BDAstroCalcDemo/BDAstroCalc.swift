@@ -42,7 +42,7 @@ struct BDAstroCalc {
     
     
     /// Multiplier for conversion from degrees to radians
-    static let rad = M_PI / 180
+    static let rad = Double.pi / 180
     
     /// A parameter used for finding the time of a solar transit near a Julian Date.
     // See Table 6 of http://aa.quae.nl/en/reken/zonpositie.html
@@ -66,7 +66,7 @@ struct BDAstroCalc {
     - returns: The number of days since the year 2000.
     
     */
-    static func daysSinceJan12000 (date date: NSDate) -> Double {
+    static func daysSinceJan12000 (date: NSDate) -> Double {
         
         return toJulian(date: date) - J2000
     }
@@ -83,7 +83,7 @@ struct BDAstroCalc {
     - returns: An NSDate that is the given number of hours after the given date.
     
     */
-    static func hoursLater (date date: NSDate, hours: Double) -> NSDate {
+    static func hoursLater (date: NSDate, hours: Double) -> NSDate {
         
         let hourSeconds = 60.0 * 60.0
         
@@ -100,7 +100,7 @@ struct BDAstroCalc {
     - returns: The number of days since the beginning of the Julian Period.
     
     */
-    static func toJulian (date date: NSDate) -> Double {
+    static func toJulian (date: NSDate) -> Double {
         
         let daySeconds : Double = 60 * 60 * 24
         let J1970 = 2440588.0
@@ -119,7 +119,7 @@ struct BDAstroCalc {
     - returns: A Gregorian calendar date from a number of Julian Days.
     
     */
-    static func fromJulian (julianDays julianDays: Double) -> NSDate {
+    static func fromJulian (julianDays: Double) -> NSDate {
     
         let daySeconds : Double = 60 * 60 * 24
         let J1970 = 2440588.0
@@ -145,7 +145,7 @@ struct BDAstroCalc {
     - returns: The altitude above the horizon in radians.
     
     */
-    static func altitude (hourAngle hourAngle: Double, latitude: Double, declination: Double) -> Double {
+    static func altitude (hourAngle: Double, latitude: Double, declination: Double) -> Double {
         
         return asin(sin(latitude) * sin(declination) + cos(latitude) * cos(declination) * cos(hourAngle))
         
@@ -162,10 +162,10 @@ struct BDAstroCalc {
     
     - parameter declination: The declination in radians.
     
-    - returns: The azimuth of the body in radians, measured from South to West. (Note that it it standard to measure from North to East; simply add/subtract M_PI to the result if you need to conform.)
+    - returns: The azimuth of the body in radians, measured from South to West. (Note that it it standard to measure from North to East; simply add/subtract .pi to the result if you need to conform.)
     
     */
-    static func azimuth (hourAngle hourAngle: Double, latitude: Double, declination: Double) -> Double {
+    static func azimuth (hourAngle: Double, latitude: Double, declination: Double) -> Double {
         
         return atan2(sin(hourAngle), cos(hourAngle) * sin(latitude) - tan(declination) * cos(latitude))
     }
@@ -183,7 +183,7 @@ struct BDAstroCalc {
     - returns: The declination in radians.
     
     */
-    static func declination (latitude latitude: Double, longitude: Double) -> Double {
+    static func declination (latitude: Double, longitude: Double) -> Double {
         
         return asin(sin(latitude) * cos(obliquityOfEarth) + cos(latitude) * sin(obliquityOfEarth) * sin(longitude))
     }
@@ -201,7 +201,7 @@ struct BDAstroCalc {
     - returns: The right asnension in radians.
     
     */
-    static func rightAscension (latitude latitude: Double, longitude: Double) -> Double {
+    static func rightAscension (latitude: Double, longitude: Double) -> Double {
                 
         return atan2(sin(longitude) * cos(obliquityOfEarth) - tan(latitude) * sin(obliquityOfEarth), cos(longitude))
     }
@@ -218,7 +218,7 @@ struct BDAstroCalc {
     - returns: The sidereal time in radians.
     
     */
-    static func siderealTime (daysSinceJan12000 daysSinceJan12000: Double, longitude: Double) -> Double {
+    static func siderealTime (daysSinceJan12000: Double, longitude: Double) -> Double {
         
         return rad * (280.16 + 360.9856235 * daysSinceJan12000) - longitude
     }
@@ -237,7 +237,7 @@ struct BDAstroCalc {
     - returns: The right ascension and declination in radians, and distance in kilometers, of the moon for the given date.
     
     */
-    static func moonCoordinates (daysSinceJan12000 daysSinceJan12000: Double) -> (declination: Double, distance: Double, rightAscension: Double) {
+    static func moonCoordinates (daysSinceJan12000: Double) -> (declination: Double, distance: Double, rightAscension: Double) {
         
         let eclipticLongitude = rad * (218.316 + 13.176396 * daysSinceJan12000)
         let meanAnomaly = rad * (134.963 + 13.064993 * daysSinceJan12000)
@@ -262,7 +262,7 @@ struct BDAstroCalc {
     - returns: The moon's altitude and azimuth in radians, and distance in kilometers.
     
     */
-    static func moonPosition(date date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double, distance: Double) {
+    static func moonPosition(date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double, distance: Double) {
         
         let longitude = rad * -location.longitude
         let phi = rad * location.latitude
@@ -293,7 +293,7 @@ struct BDAstroCalc {
     - returns: The fraction of the moon illuminated is a number from 0 to 1, where 0 is a new moon and 1 is a full moon. The phase is a number from 0 to 1, where 0 and 1 are a new moon, 0.5 is a full moon, 0 - 0.5 is waxing, and 0.5 - 1.0 is waning. The angle is the midpoint of the illuminated limb of the moon going east, in radians.
     
     */
-    static func moonPhase (date date: NSDate) -> (fractionOfMoonIlluminated: Double, phase: Double, angle: Double) {
+    static func moonPhase (date: NSDate) -> (fractionOfMoonIlluminated: Double, phase: Double, angle: Double) {
         
         let days = daysSinceJan12000(date: date)
         let sunCoords = sunCoordinates(daysSinceJan12000: days)
@@ -312,7 +312,7 @@ struct BDAstroCalc {
         
         let fractionOfMoonIlluminated = (1 + cos(inc)) / 2
         
-        let phase = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / Double(M_PI)
+        let phase = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / Double.pi
         
         return (fractionOfMoonIlluminated, phase, angle)
     }
@@ -330,17 +330,17 @@ struct BDAstroCalc {
     - returns: The rise and set NSDates of the moon, if there are any. If the moon is always up for the given date: returns NSDate.distantFuture() for both rise and set. If the moon is always down for the given date: returns NSDate.distantPast() for both rise and set.
     
     */
-    static func moonRiseAndSet (date date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate) {
+    static func moonRiseAndSet (date: NSDate, location: CLLocationCoordinate2D) -> (rise: Date, set: Date) {
         
-        let calendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)!
-        let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
+        let calendar = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!
+        var dateComponents = calendar.components([.year, .month, .day], from: date as Date)
         dateComponents.hour = 0
         dateComponents.minute = 0
         dateComponents.second = 0
-        let day = calendar.dateFromComponents(dateComponents)!
+        let day = calendar.date(from: dateComponents)!
         
         let hc = 0.133 * rad
-        var h0 = moonPosition(date: day, location: location).altitude - hc
+        var h0 = moonPosition(date: day as NSDate, location: location).altitude - hc
         
         var rise : Double?
         var set : Double?
@@ -348,10 +348,11 @@ struct BDAstroCalc {
         var a:Double, b:Double, d:Double, h1:Double, h2:Double, roots:Int, xe:Double
         var x1 = 0.0, x2 = 0.0, ye = 0.0
 		
-        for var i : Double = 1; i <= 24; i += 2 {
+        //for var i : Double = 1; i <= 24; i += 2 {
+        for i: Double in stride(from: 1, to: 24, by: 2){
             
-            h1 = moonPosition(date: hoursLater(date: day, hours: i), location: location).altitude - hc
-            h2 = moonPosition(date: hoursLater(date: day, hours: i + 1), location: location).altitude - hc
+            h1 = moonPosition(date: hoursLater(date: day as NSDate, hours: i), location: location).altitude - hc
+            h2 = moonPosition(date: hoursLater(date: day as NSDate, hours: i + 1), location: location).altitude - hc
             
             a = (h0 + h2) / 2 - h1
             b = (h2 - h0) / 2
@@ -366,20 +367,20 @@ struct BDAstroCalc {
                 let dx = sqrt(d) / (abs(a) * 2)
                 x1 = xe - dx
                 x2 = xe + dx
-                if abs(x1) <= 1 { roots++ }
-                if abs(x2) <= 1 { roots++ }
+                if abs(x1) <= 1 { roots+=1 }
+                if abs(x2) <= 1 { roots+=1 }
                 if x1 < -1 { x1 = x2 }
             }
             
             if roots == 1 {
                 
-                if h0 < 0 { rise = i + x1 }
-                else { set = i + x1 }
+                if h0 < 0 { rise = Double(i) + x1 }
+                else { set = Double(i) + x1 }
                 
             } else if roots == 2 {
                 
-                rise = i + (ye < 0 ? x2 : x1)
-                set = i + (ye < 0 ? x1 : x2)
+                rise = Double(i) + (ye < 0 ? x2 : x1)
+                set = Double(i) + (ye < 0 ? x1 : x2)
             }
             
             if rise != nil && set != nil { break }
@@ -389,20 +390,20 @@ struct BDAstroCalc {
         
         var result = (rise: day, set: day)
         
-        if rise != nil { result.rise = hoursLater(date: day, hours: rise!) }
-        if set != nil { result.set = hoursLater(date: day, hours: set!) }
+        if rise != nil { result.rise = hoursLater(date: day as NSDate, hours: rise!) as Date }
+        if set != nil { result.set = hoursLater(date: day as NSDate, hours: set!) as Date }
         
         if rise == nil && set == nil {
             
             if ye > 0 {
                 
-                result.rise = NSDate.distantFuture() 
-                result.set = NSDate.distantFuture() 
+                result.rise = NSDate.distantFuture
+                result.set = NSDate.distantFuture
                 
             } else {
                 
-                result.rise = NSDate.distantPast() 
-                result.set = NSDate.distantPast() 
+                result.rise = NSDate.distantPast
+                result.set = NSDate.distantPast
             }
         }
         
@@ -427,9 +428,9 @@ struct BDAstroCalc {
     - returns: The approximate solar transit.
     
     */
-    static func approximateTransit (julianCycleNumber julianCycleNumber: Double, longitude: Double, targetHourAngle: Double) -> Double {
+    static func approximateTransit (julianCycleNumber: Double, longitude: Double, targetHourAngle: Double) -> Double {
         
-        return J0 + julianCycleNumber + (targetHourAngle + longitude) / (2 * M_PI)
+        return J0 + julianCycleNumber + (targetHourAngle + longitude) / (2 * .pi)
     }
     
     
@@ -442,7 +443,7 @@ struct BDAstroCalc {
     - returns: The ecliptic longitude in radians.
     
     */
-    static func eclipticLongitude (meanAnomaly meanAnomaly: Double) -> Double {
+    static func eclipticLongitude (meanAnomaly: Double) -> Double {
         
         // Equation of Center
         let center = rad * (1.9148 * sin(meanAnomaly) + 0.02 * sin(2 * meanAnomaly) + 0.0003 * sin(3 * meanAnomaly))
@@ -450,7 +451,7 @@ struct BDAstroCalc {
         // Perihelion of Earth
         let perihelion = rad * 102.9372
         
-        return meanAnomaly + center + perihelion + Double(M_PI)
+        return meanAnomaly + center + perihelion + Double.pi
     }
     
     
@@ -467,7 +468,7 @@ struct BDAstroCalc {
     - returns: The hour angle in radians.
     
     */
-    static func hourAngle (altitude altitude: Double, latitude: Double, declination: Double) -> Double {
+    static func hourAngle (altitude: Double, latitude: Double, declination: Double) -> Double {
         
         return acos((sin(altitude) - sin(latitude) * sin(declination)) / (cos(latitude) * cos(declination)))
     }
@@ -484,9 +485,9 @@ struct BDAstroCalc {
     - returns: The Julian cycle number.
     
     */
-    static func julianCycle (daysSinceJan12000 daysSinceJan12000: Double, longitude: Double) -> Double {
+    static func julianCycle (daysSinceJan12000: Double, longitude: Double) -> Double {
         
-        return round(daysSinceJan12000 - J0 - longitude / (2 * M_PI))
+        return round(daysSinceJan12000 - J0 - longitude / (2 * .pi))
     }
     
     
@@ -511,7 +512,7 @@ struct BDAstroCalc {
     - returns: The Julian time of the sunset.
     
     */
-    static func julianSet (altitude altitude: Double, declination: Double, latitude: Double, longitude: Double, julianCycleNumber: Double, meanAnomaly: Double, meanLongitude: Double) -> Double {
+    static func julianSet (altitude: Double, declination: Double, latitude: Double, longitude: Double, julianCycleNumber: Double, meanAnomaly: Double, meanLongitude: Double) -> Double {
         
         let hrAngle = hourAngle(altitude: altitude, latitude: latitude, declination: declination)
         let approxTransit = approximateTransit(julianCycleNumber: julianCycleNumber, longitude: longitude, targetHourAngle: hrAngle)
@@ -533,7 +534,7 @@ struct BDAstroCalc {
     - returns: The Julian date of the solar transit.
     
     */
-    static func julianSolarTransit (approximateTransit approximateTransit: Double, longitude: Double, meanAnomaly: Double) -> Double {
+    static func julianSolarTransit (approximateTransit: Double, longitude: Double, meanAnomaly: Double) -> Double {
     
         return J2000 + approximateTransit + 0.0053 * sin(meanAnomaly) - 0.0069 * sin(2 * longitude)
     }
@@ -548,7 +549,7 @@ struct BDAstroCalc {
     - returns: The solar mean anomaly in radians.
     
     */
-    static func solarMeanAnomaly (daysSinceJan12000 daysSinceJan12000: Double) -> Double {
+    static func solarMeanAnomaly (daysSinceJan12000: Double) -> Double {
         
         return rad * (357.5291 + 0.98560028 * daysSinceJan12000)
     }
@@ -563,7 +564,7 @@ struct BDAstroCalc {
     - returns: The sun's right ascension and declination in radians.
     
     */
-    static func sunCoordinates (daysSinceJan12000 daysSinceJan12000: Double) -> (declination: Double, rightAscension: Double) {
+    static func sunCoordinates (daysSinceJan12000: Double) -> (declination: Double, rightAscension: Double) {
         
         let solarMA = solarMeanAnomaly(daysSinceJan12000: daysSinceJan12000)
         let eLongitude = eclipticLongitude(meanAnomaly: solarMA)
@@ -584,7 +585,7 @@ struct BDAstroCalc {
     - returns: The sun's azimuth and altitude in radians. (Note:
     
     */
-    static func sunPosition (date date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double) {
+    static func sunPosition (date: NSDate, location: CLLocationCoordinate2D) -> (altitude: Double, azimuth: Double) {
         
         let longitude = rad * -location.longitude
         let latitude = rad * location.latitude
@@ -609,7 +610,7 @@ struct BDAstroCalc {
     - returns: The sun's rise, set, solar noon, and nadir for the given date and location.
     
     */
-    static func sunRiseAndSet (date date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate, solarNoon: NSDate, nadir: NSDate) {
+    static func sunRiseAndSet (date: NSDate, location: CLLocationCoordinate2D) -> (rise: NSDate, set: NSDate, solarNoon: NSDate, nadir: NSDate) {
         
         // Standard altitude of the end of sunrise and start of sunset
         let sunRiseEndSetStartAltitude = -0.3
@@ -661,7 +662,7 @@ struct BDAstroCalc {
     - returns: The method returns a dictionary of significant times during the day. Currently returns: sunriseStart, sunriseEnd, sunsetStart, sunsetEnd, dawn, dusk, nauticalDawn, nauticalDusk, nightStart, nightEnd, goldenHourStart, goldenHourEnd. The time are accessed via a String and given as an NSDate.
     
     */
-    static func sunSignificantTimes (date date: NSDate, location: CLLocationCoordinate2D) -> [String: NSDate] {
+    static func sunSignificantTimes (date: NSDate, location: CLLocationCoordinate2D) -> [String: NSDate] {
 
         // Various standard altitudes of the sun. Feel free to add your own times, in the same format, to this array--they'll be added to the returned dictionary.
         let times = [
@@ -688,9 +689,10 @@ struct BDAstroCalc {
         
         var result = [String: NSDate]()
         
-        var i:Int, julianEnd=0.0, julianStart:Double, length:Int
+        var julianEnd=0.0, julianStart:Double
         
-        for i = 0, length = times.count; i < length; i++ {
+        //for i = 0, length = times.count; i < length; i++ {
+        for i in stride(from: 0, to: times.count, by: 1) {
             
             let time = times[i]
             

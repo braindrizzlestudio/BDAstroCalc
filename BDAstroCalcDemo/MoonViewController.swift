@@ -40,7 +40,7 @@ class MoonViewController: UIViewController {
     // MARK: Constants
     
     /// For Conversion from radians to degrees.
-    let radiansToDegrees = 180 / M_PI
+    let radiansToDegrees = 180 / Double.pi
     
     
     // MARK: Date Picker
@@ -68,7 +68,7 @@ class MoonViewController: UIViewController {
 
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = UIRectEdge.None
+        self.edgesForExtendedLayout = UIRectEdge()
         
         setupDatePicker()
         
@@ -91,9 +91,9 @@ class MoonViewController: UIViewController {
         let datePickerFrame = CGRect(x: 0, y: self.view.bounds.size.height * 0.5, width: self.view.bounds.size.width, height: self.view.bounds.size.height * 0.4)
         
         datePicker.frame = datePickerFrame
-        datePicker.datePickerMode = UIDatePickerMode.DateAndTime
-        datePicker.timeZone = currentTimeZone!
-        datePicker.addTarget(self, action: "updateLabels", forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
+        datePicker.timeZone = currentTimeZone! as TimeZone
+        datePicker.addTarget(self, action: Selector(("updateLabels")), for: UIControl.Event.valueChanged)
         
         self.view.addSubview(datePicker)
     }
@@ -104,14 +104,14 @@ class MoonViewController: UIViewController {
     func setupHeading () {
         
         headingLabel.text = "Moon Information"
-        headingLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        headingLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         
         let origin = CGPoint(x: self.view.bounds.size.width * 0.125, y: self.view.bounds.size.height * 0.01)
         let size = CGSize(width: self.view.bounds.size.width * 0.75, height: self.view.bounds.size.height * 0.10)
         headingLabel.frame = CGRect(origin: origin, size: size)
         
         headingLabel.adjustsFontSizeToFitWidth = true
-        headingLabel.textAlignment = .Center
+        headingLabel.textAlignment = .center
         
         self.view.addSubview(headingLabel)
     }
@@ -121,18 +121,18 @@ class MoonViewController: UIViewController {
     
     func setupLabels () {
         
-        setLabelProperties(riseLabel, heightPercentage: 0.100, initialText: "Rise: ")
-        setLabelProperties(setLabel, heightPercentage: 0.135, initialText: "Set: ")
+        setLabelProperties(label: riseLabel, heightPercentage: 0.100, initialText: "Rise: ")
+        setLabelProperties(label: setLabel, heightPercentage: 0.135, initialText: "Set: ")
         
-        setLabelProperties(altitudeLabel, heightPercentage: 0.185, initialText: "Altitude: ")
-        setLabelProperties(azimuthLabel, heightPercentage: 0.220, initialText: "Azimuth: ")
+        setLabelProperties(label: altitudeLabel, heightPercentage: 0.185, initialText: "Altitude: ")
+        setLabelProperties(label: azimuthLabel, heightPercentage: 0.220, initialText: "Azimuth: ")
         
-        setLabelProperties(declinationLabel, heightPercentage: 0.270, initialText: "Declination: ")
-        setLabelProperties(rightAscensionLabel, heightPercentage: 0.305, initialText: "Right Ascension: ")
+        setLabelProperties(label: declinationLabel, heightPercentage: 0.270, initialText: "Declination: ")
+        setLabelProperties(label: rightAscensionLabel, heightPercentage: 0.305, initialText: "Right Ascension: ")
 
-        setLabelProperties(phaseAngleLabel, heightPercentage: 0.355, initialText: "Phase Angle: ")
-        setLabelProperties(phaseIlluminationLabel, heightPercentage: 0.390, initialText: "Illuminaton Fraction: ")
-        setLabelProperties(phasePhaseLabel, heightPercentage: 0.425, initialText: "Phase Fraction: ")
+        setLabelProperties(label: phaseAngleLabel, heightPercentage: 0.355, initialText: "Phase Angle: ")
+        setLabelProperties(label: phaseIlluminationLabel, heightPercentage: 0.390, initialText: "Illuminaton Fraction: ")
+        setLabelProperties(label: phasePhaseLabel, heightPercentage: 0.425, initialText: "Phase Fraction: ")
 
     }
     
@@ -145,7 +145,7 @@ class MoonViewController: UIViewController {
         label.frame = CGRect(origin: origin, size: size)
         
         label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .Center
+        label.textAlignment = .center
         
         self.view.addSubview(label)
     }
@@ -158,44 +158,44 @@ class MoonViewController: UIViewController {
     func updateLabels() {
         
         let newDate = datePicker.date
-        let Jan12000Date = BDAstroCalc.daysSinceJan12000(date: datePicker.date)
+        let Jan12000Date = BDAstroCalc.daysSinceJan12000(date: datePicker.date as NSDate)
 
         
-        let moonRiseAndSet = BDAstroCalc.moonRiseAndSet(date: datePicker.date, location: currentLocation)
-        let dateFormatter = NSDateFormatter()
+        let moonRiseAndSet = BDAstroCalc.moonRiseAndSet(date: datePicker.date as NSDate, location: currentLocation)
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        dateFormatter.timeZone = currentTimeZone!
+        dateFormatter.timeZone = currentTimeZone! as TimeZone
         
-        riseLabel.text = "Rise:   \(dateFormatter.stringFromDate(moonRiseAndSet.rise))"
-        setLabel.text = "Set:   \(dateFormatter.stringFromDate(moonRiseAndSet.set))"
+        riseLabel.text = "Rise:   \(dateFormatter.string(from: moonRiseAndSet.rise as Date))"
+        setLabel.text = "Set:   \(dateFormatter.string(from: moonRiseAndSet.set as Date))"
         
         
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.roundingMode = NSNumberFormatterRoundingMode.RoundHalfUp
+        let numberFormatter = NumberFormatter()
+        numberFormatter.roundingMode = NumberFormatter.RoundingMode.halfUp
         
         altitudeLabel.text = "Altitude:   "
-            + numberFormatter.stringFromNumber(BDAstroCalc.moonPosition(date: datePicker.date, location: currentLocation).altitude * radiansToDegrees)!
+            + numberFormatter.string(from: NSNumber(value: BDAstroCalc.moonPosition(date: datePicker.date as NSDate, location: currentLocation).altitude * radiansToDegrees))!
             + "\u{00B0}"
         azimuthLabel.text = "Azimuth:   "
-            + numberFormatter.stringFromNumber((BDAstroCalc.moonPosition(date: datePicker.date, location: currentLocation).azimuth + M_PI) * radiansToDegrees % 360)!
+            + numberFormatter.string(from: NSNumber(value: Int((BDAstroCalc.moonPosition(date: datePicker.date as NSDate, location: currentLocation).azimuth + .pi) * radiansToDegrees) % 360))!
             + "\u{00B0}"
         
         declinationLabel.text = "Declination:   "
-            + numberFormatter.stringFromNumber(BDAstroCalc.moonCoordinates(daysSinceJan12000: Jan12000Date).declination * radiansToDegrees)!
+            + numberFormatter.string(from: NSNumber(value: BDAstroCalc.moonCoordinates(daysSinceJan12000: Jan12000Date).declination * radiansToDegrees))!
             + "\u{00B0}"
         rightAscensionLabel.text = "Right Ascension:   "
-            + numberFormatter.stringFromNumber((BDAstroCalc.moonCoordinates(daysSinceJan12000: Jan12000Date).rightAscension * radiansToDegrees + 360) % 360)!
+            + numberFormatter.string(from: NSNumber(value: Int((BDAstroCalc.moonCoordinates(daysSinceJan12000: Jan12000Date).rightAscension * radiansToDegrees + 360)) % 360))!
             + "\u{00B0}"
 
-        let phase = BDAstroCalc.moonPhase(date: newDate)
+        let phase = BDAstroCalc.moonPhase(date: newDate as NSDate)
         phaseIlluminationLabel.text = "Illumination Fraction:   "
-            + numberFormatter.stringFromNumber(phase.fractionOfMoonIlluminated * 100)!
+            + numberFormatter.string(from: NSNumber(value: phase.fractionOfMoonIlluminated * 100))!
             + "%"
         phasePhaseLabel.text = "Phase Fraction:   "
-            + numberFormatter.stringFromNumber(phase.phase * 100)!
+            + numberFormatter.string(from: NSNumber(value: phase.phase * 100))!
             + "%"
         phaseAngleLabel.text = "Phase Angle:   "
-            + numberFormatter.stringFromNumber(phase.angle  * radiansToDegrees)!
+            + numberFormatter.string(from: NSNumber(value: phase.angle  * radiansToDegrees))!
             + "\u{00B0}"
     }
 }
